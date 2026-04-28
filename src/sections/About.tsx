@@ -99,22 +99,22 @@ const About = () => {
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] mb-5" style={{ color: 'var(--vermillion)' }}>
               About
             </p>
-            <h2 className="font-display font-900 headline-about tracking-[-0.04em] leading-[0.92]" style={{ color: 'var(--ink)' }}>
+            <h2 className="font-display font-700 headline-about leading-[0.92]" style={{ color: 'var(--ink)' }}>
               Engineer
             </h2>
-            <h2 className="font-display font-900 headline-about tracking-[-0.04em] leading-[0.92]" style={{ color: 'var(--ink-muted)' }}>
+            <h2 className="font-display font-700 headline-about leading-[0.92]" style={{ color: 'var(--ink-muted)' }}>
               who ships
             </h2>
           </div>
 
           <div ref={bodyRef} className="mb-10 will-change-transform">
-            <p className="text-[17px] leading-[1.7] max-w-[52ch]" style={{ color: 'var(--ink-muted)' }}>
+            <p className="text-[1.0625rem] leading-[1.75] max-w-[52ch]" style={{ color: 'var(--ink-muted)' }}>
               I specialize in AI integration, agentic workflows, and scalable frontend architecture. 
               From orchestrating NVIDIA NemoClaw agents to building MCP servers, I bridge the gap 
               between sophisticated LLMs and interfaces people actually want to use.
             </p>
-            <p className="text-[17px] leading-[1.7] max-w-[52ch] mt-5" style={{ color: 'var(--ink-muted)' }}>
-              Currently pursuing an MA in Business Analytics at Asia Pacific University
+            <p className="text-[1.0625rem] leading-[1.75] max-w-[52ch] mt-5" style={{ color: 'var(--ink-muted)' }}>
+              Currently pursuing an MBA at Asia Pacific University
               while engineering AI systems at Etiqa. BA in Computer Science (Data Analysis), 2024.
             </p>
           </div>
@@ -123,7 +123,7 @@ const About = () => {
           <div ref={statsRef} className="flex gap-10 will-change-transform">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <p className="font-display font-900 text-[clamp(32px,4vw,56px)] tracking-[-0.04em] leading-none" style={{ color: 'var(--vermillion)' }}>
+                <p className="font-display font-700 text-[clamp(2rem,4vw,3.5rem)] tracking-[-0.03em] leading-none" style={{ color: 'var(--vermillion)' }}>
                   {stat.value}
                 </p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] mt-2" style={{ color: 'var(--ink-muted)' }}>
@@ -142,7 +142,7 @@ const About = () => {
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden">
             <img
               src="/about-portrait.jpg"
-              alt="Youssef Shoair"
+              alt="Youssef Shoair, AI Software Engineer based in Kuala Lumpur"
               className="w-full h-full object-cover"
             />
             <div

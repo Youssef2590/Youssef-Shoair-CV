@@ -17,7 +17,7 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     id: 1,
-    role: 'Software Engineer',
+    role: 'AI Software Engineer',
     company: 'Etiqa Insurance & Takaful',
     location: 'Kuala Lumpur',
     period: 'Jul 2025 – Present',
@@ -122,7 +122,7 @@ const Experience = () => {
           </h2>
         </div>
         <p className="hidden lg:block font-mono text-[11px] uppercase tracking-[0.14em] max-w-[28ch] text-right" style={{ color: 'var(--ink-muted)' }}>
-          {experiences.length} roles across {new Set(experiences.map(e => e.company)).size} organizations, 2020 to present
+          {experiences.length} roles across {new Set(experiences.map(e => e.company)).size} organizations, 2022 to present
         </p>
       </div>
 
@@ -132,23 +132,33 @@ const Experience = () => {
           <div
             key={exp.id}
             ref={(el) => { rowsRef.current[index] = el; }}
-            className="group will-change-transform cursor-pointer"
+            className="group will-change-transform cursor-pointer transition-colors duration-300"
+            role="button"
+            tabIndex={0}
+            aria-expanded={expandedId === exp.id}
             style={{ borderBottom: '1px solid oklch(0.94 0.005 260 / 0.06)' }}
             onClick={() => setExpandedId(expandedId === exp.id ? null : exp.id)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedId(expandedId === exp.id ? null : exp.id); } }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = 'oklch(0.62 0.22 25 / 0.03)';
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = 'transparent';
+            }}
             data-cursor-hover
           >
             {/* Main row */}
-            <div className="grid grid-cols-[1fr] sm:grid-cols-[1.2fr_1fr_0.8fr_auto] gap-2 sm:gap-6 py-5 sm:py-6 items-start sm:items-center">
-              <div className="flex items-center gap-3">
+            <div className="grid grid-cols-[1fr] sm:grid-cols-[2fr_1fr_0.7fr_0.8fr] gap-2 sm:gap-4 py-5 sm:py-6 items-start sm:items-center">
+              <div className="flex items-center gap-3 min-w-0">
                 {exp.current && (
                   <span className="w-1.5 h-1.5 rounded-full shrink-0 animate-pulse" style={{ background: 'var(--vermillion)' }} />
                 )}
-                <h3 className="font-display font-700 text-[clamp(18px,2.2vw,26px)] tracking-[-0.02em]" style={{ color: 'var(--ink)' }}>
+                <h3 className="font-display font-700 text-[clamp(1.125rem,2vw,1.5rem)] tracking-[-0.02em] truncate" style={{ color: 'var(--ink)' }}>
                   {exp.role}
                 </h3>
               </div>
 
-              <p className="font-mono text-[12px] uppercase tracking-[0.1em]" style={{ color: 'var(--ink-muted)' }}>
+              <p className="font-mono text-[11px] uppercase tracking-[0.1em] truncate" style={{ color: 'var(--ink-muted)' }}>
                 {exp.company}
               </p>
 
@@ -163,15 +173,18 @@ const Experience = () => {
 
             {/* Expandable description */}
             <div
-              className="overflow-hidden transition-all duration-500"
-              style={{
-                maxHeight: expandedId === exp.id ? '200px' : '0px',
-                opacity: expandedId === exp.id ? 1 : 0,
-              }}
+              className="expand-panel"
+              data-open={expandedId === exp.id ? 'true' : 'false'}
             >
-              <p className="pb-6 text-[15px] leading-[1.7] max-w-3xl sm:pl-[calc(1.5rem)]" style={{ color: 'var(--ink-muted)' }}>
-                {exp.description}
-              </p>
+              <div>
+                <p className="pb-6 text-[15px] leading-[1.7] max-w-3xl sm:pl-[calc(1.5rem)]" style={{
+                  color: 'var(--ink-muted)',
+                  opacity: expandedId === exp.id ? 1 : 0,
+                  transition: 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s',
+                }}>
+                  {exp.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}

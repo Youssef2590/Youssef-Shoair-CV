@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const links = [
   { label: 'Email', href: 'mailto:youssef_shoair@outlook.com', external: false },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/youssef-shoair-821361173', external: true },
-  { label: 'GitHub', href: 'https://github.com', external: true },
+  { label: 'GitHub', href: 'https://github.com/Youssef2590', external: true },
 ];
 
 const Contact = () => {
@@ -60,7 +60,7 @@ const Contact = () => {
         {/* Big headline as CTA */}
         <h2
           ref={headlineRef}
-          className="font-display font-900 text-[clamp(40px,8vw,120px)] tracking-[-0.04em] leading-[0.92] mb-10 will-change-transform"
+          className="font-display font-700 text-[clamp(2.5rem,8vw,7.5rem)] tracking-[-0.035em] leading-[0.92] mb-10 will-change-transform"
           style={{ color: 'var(--ink)' }}
         >
           Let's build<br />
@@ -83,17 +83,29 @@ const Contact = () => {
                   href={link.href}
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center gap-3 w-fit transition-colors duration-300"
-                  style={{ color: 'var(--ink-muted)' }}
+                  className="liquid-btn group flex items-center gap-3 w-fit px-5 py-2.5 rounded-full transition-colors duration-300"
+                  style={{
+                    color: 'var(--ink-muted)',
+                    border: '1px solid oklch(0.94 0.005 260 / 0.1)',
+                  }}
                   data-cursor-hover
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--ink)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--ink-muted)'; }}
+                  onMouseEnter={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    e.currentTarget.style.setProperty('--fill-x', `${e.clientX - rect.left}px`);
+                    e.currentTarget.style.setProperty('--fill-y', `${e.clientY - rect.top}px`);
+                    (e.currentTarget as HTMLElement).style.color = 'oklch(0.15 0.005 260)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--vermillion)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--ink-muted)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'oklch(0.94 0.005 260 / 0.1)';
+                  }}
                 >
-                  <span className="font-display font-700 text-[clamp(20px,3vw,32px)] tracking-[-0.02em]">
+                  <span className="relative z-10 font-display font-700 text-[clamp(1.25rem,3vw,2rem)] tracking-[-0.02em]">
                     {link.label}
                   </span>
                   {link.external && (
-                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-y-0.5 group-hover:translate-y-0 transition-all duration-300" />
+                    <ArrowUpRight className="relative z-10 w-4 h-4 opacity-0 group-hover:opacity-100 -translate-y-0.5 group-hover:translate-y-0 transition-all duration-300" />
                   )}
                 </a>
               ))}
@@ -111,14 +123,14 @@ const Contact = () => {
       </div>
 
       {/* Footer */}
-      <div className="mt-[12vh] pt-8 flex items-center justify-between" style={{ borderTop: '1px solid oklch(0.94 0.005 260 / 0.06)' }}>
+      <footer className="mt-[12vh] pt-8 flex items-center justify-between" style={{ borderTop: '1px solid oklch(0.94 0.005 260 / 0.06)' }}>
         <p className="font-mono text-[10px] uppercase tracking-[0.12em]" style={{ color: 'var(--ink-muted)' }}>
-          © 2025 Youssef Shoair
+          © 2026 Youssef Shoair
         </p>
         <p className="font-mono text-[10px] uppercase tracking-[0.12em]" style={{ color: 'var(--ink-muted)' }}>
           Built with React & GSAP
         </p>
-      </div>
+      </footer>
     </section>
   );
 };

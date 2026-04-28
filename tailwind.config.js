@@ -64,8 +64,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Satoshi', 'General Sans', 'sans-serif'],
-        sans: ['Satoshi', 'General Sans', 'sans-serif'],
+        display: ['Clash Display', 'Satoshi', 'sans-serif'],
+        sans: ['Satoshi', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       borderRadius: {
