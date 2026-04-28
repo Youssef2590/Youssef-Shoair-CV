@@ -24,7 +24,7 @@ const Hero = () => {
   const lastNameWrapRef = useRef<HTMLDivElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
   const fallenChars = useRef(new Set<string>());
-  const resetTimer = useRef<ReturnType<typeof setTimeout>>();
+  const resetTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const handleCharClick = useCallback((e: React.MouseEvent<HTMLSpanElement>, word: string, index: number) => {
     const el = e.currentTarget;
